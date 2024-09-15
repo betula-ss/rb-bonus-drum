@@ -4,10 +4,11 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { BonusesModule } from './bonuses/bonuses.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CONFIG_MONGODB } from './config/app-config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://83.220.174.38:27017/rd'),
+    MongooseModule.forRoot(`mongodb://${CONFIG_MONGODB.IP}:${CONFIG_MONGODB.PORT}/${CONFIG_MONGODB.DB}`),
     UsersModule, 
     BonusesModule
   ],

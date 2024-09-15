@@ -89,13 +89,13 @@ export class BonusesService {
     
     private getRandomBonus(bonuses: Bonus[], isInfluencer: boolean): Bonus {
         const totalWeight = bonuses.reduce((sum, bonus) => {
-            const adjustedDropChance = isInfluencer && bonus.chance < 5 ? bonus.chance * 2 : bonus.chance;
+            const adjustedDropChance = isInfluencer && bonus.chance < 5 ? bonus.chance + 1 : bonus.chance;
             return sum + adjustedDropChance;
         }, 0);
         const random = Math.random() * totalWeight;
         let cumulativeWeight = 0;
         for (const bonus of bonuses) {
-            const adjustedDropChance = isInfluencer && bonus.chance < 5 ? bonus.chance * 2 : bonus.chance;
+            const adjustedDropChance = isInfluencer && bonus.chance < 5 ? bonus.chance + 1 : bonus.chance;
             cumulativeWeight += adjustedDropChance;
             if (random < cumulativeWeight) {
                 return bonus;
